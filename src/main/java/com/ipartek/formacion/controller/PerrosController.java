@@ -43,14 +43,17 @@ public class PerrosController extends HttpServlet {
 			throws ServletException, IOException {
 
 		// esto seria para eliminar en post ¿creo?
-		// int idToDelete = Integer.parseInt(request.getParameter("eliminar"));
+		String idToDelete = request.getParameter("eliminar");
 		// int idToUpdate = Integer.parseInt(request.getParameter("modificar"));
-
-		// eliminar o modificar de la lista
-		// perros.removeIf(n -> (n.getId() == idToDelete));
 
 		// listar perros
 		request.setAttribute("perros", perros);
+
+		// eliminar o modificar de la lista
+		if (idToDelete != null) {
+			perros.removeIf(n -> (n.getId() == Integer.parseInt(idToDelete)));
+		}
+
 		request.getRequestDispatcher("perros.jsp").forward(request, response);
 	}
 

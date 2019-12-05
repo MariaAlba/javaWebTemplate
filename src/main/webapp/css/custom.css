@@ -1,11 +1,21 @@
 /*
 	Custom css para sobreescribir bootsrap
 */
-
-header,footer{
-	min-height:10vh;
+header, footer {
+	min-height: 10vh;
 }
 
-main{
-	min-height:80vh;
+main {
+	min-height: 80vh;
 }
+
+a {
+	color: white;
+}
+
+td img {
+	width:100px;
+	height:100px;
+}
+
+td a{ color: #0099ff;}

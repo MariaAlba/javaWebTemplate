@@ -13,18 +13,39 @@
 		ArrayList<Perro> perros = (ArrayList<Perro>) request.getAttribute("perros");
 	%>
 
-	listado
+	<section>
+
+		<table class="table table-responsive">
+			<thead>
+				<tr>
+					<th>#Id</th>
+					<th>Nombre</th>
+					<th>Foto</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%
+					for (Perro p : perros) {
+						int id = (int)p.getId();
+				%>
+
+				<tr>
+					<td><%=p.getId() %></td>
+					<td><%=p.getNombre() %></td>
+					<td> <img src="<%=p.getFoto()%>"></td>
+					<td> <span><a href="perros?modificar=<%=p.getId()%>">Modificar</a></span></td>
+					<td> <span><a href="perros?eliminar=<%=p.getId()%>">Eliminar</a></span></td>
+
+				<%
+					}
+				%>
+			</tbody>
+		</table>
+
+	</section>
 
 	<ol>
-		<%
-			for (Perro p : perros) {
-		%>
 
-		<li><%=p.getNombre()%> - <%=p.getId()%></li>
-
-		<%
-			}
-		%>
 	</ol>
 
 	<hr>

@@ -2,39 +2,45 @@
 <%@page import="com.ipartek.formacion.model.pojo.Perro"%>
 <%@page import="java.util.ArrayList"%>
 
-<%@include file="includes/header.jsp" %>
-<%@include file="includes/navigation.jsp" %>
+<%@include file="includes/header.jsp"%>
+<%@include file="includes/navigation.jsp"%>
+
+<main>
+	<h1>Perros</h1>
 
 
-<h1>Perros</h1>
+	<%
+		ArrayList<Perro> perros = (ArrayList<Perro>) request.getAttribute("perros");
+	%>
 
+	listado
 
-<%
-	
-	ArrayList<Perro> perros = (ArrayList<Perro>)request.getAttribute("perros");
+	<ol>
+		<%
+			for (Perro p : perros) {
+		%>
 
-%>
-
-listado
-
-<ol>
-	<% for ( Perro p :  perros ){ %>
-	
 		<li><%=p.getNombre()%> - <%=p.getId()%></li>
-		
-	<% } %>
-</ol>
 
-<hr>
+		<%
+			}
+		%>
+	</ol>
 
-formulario
+	<hr>
 
-<form action="perros" method="post">
-	
-	<input name="nombre" placeholder="nombre del bicho" required>	
-	
-	<input type="submit" value="que vaaaaaaaaa">
-</form>
+	formulario
+
+	<form action="perros" method="post">
+
+		<input name="nombre" placeholder="nombre del bicho" required>
+
+		<input type="submit" value="que vaaaaaaaaa">
+	</form>
+
+</main>
 
 
-<%@include file="includes/footer.jsp" %>
+
+
+<%@include file="includes/footer.jsp"%>

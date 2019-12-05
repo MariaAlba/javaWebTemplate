@@ -1,6 +1,7 @@
-
 <%@include file="includes/header.jsp" %>
 <%@include file="includes/navigation.jsp" %>
+
+<main>
 
 <%
 	
@@ -9,6 +10,10 @@
 %>
 
 <a href="perros">CRUD Perros</a>
+
+</main>
+
+
 
 
 <%@include file="includes/footer.jsp" %>

@@ -16,56 +16,58 @@ import com.ipartek.formacion.model.pojo.Perro;
  */
 @WebServlet("/perros")
 public class PerrosController extends HttpServlet {
-	
-	
-	private static final long serialVersionUID = 1L;
-	
-    private ArrayList<Perro> perros = new ArrayList<Perro>();
-    
-   
-	
 
+	private static final long serialVersionUID = 1L;
+
+	// lista de perros que imita a una bbdd
+	private ArrayList<Perro> perros = new ArrayList<Perro>();
+
+	// Esto no entiendo muy bien pero crea un perro que añade a la lista al iniciar
+	// el servlet ¿creo?
 	public PerrosController() {
 		super();
-		perros.add( new Perro("bubba") );
-		perros.add( new Perro("rataplan") );
-		perros.add( new Perro("mosca") );
-		perros.add( new Perro("txakur") );
-		perros.add( new Perro("lagun") );
+		perros.add(new Perro("bubba"));
+		perros.add(new Perro("rataplan"));
+		perros.add(new Perro("mosca"));
+		perros.add(new Perro("txakur"));
+		perros.add(new Perro("lagun"));
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-		//listar perros
-		
+		// listar perros
+
 		request.setAttribute("perros", perros);
 		request.getRequestDispatcher("perros.jsp").forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-		//recibir datos del form
-		
+		// recibir datos del form
+
 		String nombre = request.getParameter("nombre");
-		
-				
-		//crear perro
+
+		// crear perro
 		Perro p = new Perro();
 		p.setNombre(nombre);
-		
-		//guardar en lista
+
+		// guardar en lista
 		perros.add(p);
-		
-		//listar perros
+
+		// listar perros
 		request.setAttribute("perros", perros);
 		request.getRequestDispatcher("perros.jsp").forward(request, response);
-	
+
 	}
 
 }

@@ -1,0 +1,11 @@
+/*
+	Custom css para sobreescribir bootsrap
+*/
+
+header,footer{
+	min-height:10vh;
+}
+
+main{
+	min-height:80vh;
+}

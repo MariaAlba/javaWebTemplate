@@ -1,1 +1,1 @@
-"# javaWebTemplate" 
+# Java Web Template

@@ -24,6 +24,16 @@ td img {
 
 td a{ color: #0099ff;}
 
+
+.placeholder{
+	width:100%;
+	min-height:90vh;
+	background-image: url("/template/images/fondo.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: bottom center;
+	
+}
 #avatar {
 	width:25px;
 	height:25px;

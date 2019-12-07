@@ -1,11 +1,11 @@
 <%@include file="includes/header.jsp" %>
 <%@include file="includes/navigation.jsp" %>
 
-<main>
+<main class="container">
 
 <%
 	
-	out.print("<h1>Soy index.jsp</h1>");
+	out.print("<h1 class=\"text-center h1\">Soy index.jsp</h1>");
 
 %>
 

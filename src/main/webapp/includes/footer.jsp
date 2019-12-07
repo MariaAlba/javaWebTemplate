@@ -1,5 +1,11 @@
 
-<footer class="bg-primary"> 
+<footer class="bg-info py-3"> 
+
+	<div class="container d-flex justify-content-between my-auto">
+		<a href=""><span class="fa fa-twitter"></span></a>
+		<a href=""><span class="fa fa-facebook"></span></a>
+		<a href=""><span class="fa fa-instagram" ></span></a>
+	</div>
 
 </footer>
 

@@ -5,7 +5,8 @@
 <%@include file="includes/header.jsp"%>
 <%@include file="includes/navigation.jsp"%>
 
-<main>
+<main class="container">
+	
 	<h1>Perros</h1>
 
 
@@ -15,12 +16,14 @@
 
 	<section>
 
-		<table class="table table-responsive">
+		<table class="table table-responsive table-bordered">
 			<thead>
 				<tr>
 					<th>#Id</th>
 					<th>Nombre</th>
 					<th>Foto</th>
+					<th>Modificar</th>
+					<th>Eliminar</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -44,9 +47,6 @@
 
 	</section>
 
-	<ol>
-
-	</ol>
 
 	<hr>
 

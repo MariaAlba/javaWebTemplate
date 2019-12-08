@@ -28,11 +28,11 @@ public class PerrosController extends HttpServlet {
 	// el servlet ¿creo?
 	public PerrosController() {
 		super();
-		perros.add(new Perro(perros.size(), "bubba"));
-		perros.add(new Perro(perros.size(), "rataplan"));
-		perros.add(new Perro(perros.size(), "mosca"));
-		perros.add(new Perro(perros.size(), "txakur"));
-		perros.add(new Perro(perros.size(), "lagun"));
+		perros.add(new Perro(perros.size(), "bubba","https://images.dog.ceo/breeds/chow/n02112137_9146.jpg"));
+		perros.add(new Perro(perros.size(), "rataplan","https://images.dog.ceo/breeds/poodle-toy/n02113624_7996.jpg"));
+		perros.add(new Perro(perros.size(), "mosca","https://images.dog.ceo/breeds/elkhound-norwegian/n02091467_3556.jpg"));
+		perros.add(new Perro(perros.size(), "txakur","https://images.dog.ceo/breeds/keeshond/n02112350_7141.jpg"));
+		perros.add(new Perro(perros.size(), "lagun","https://images.dog.ceo/breeds/retriever-chesapeake/n02099849_4767.jpg"));
 	}
 
 	/**
@@ -74,12 +74,14 @@ public class PerrosController extends HttpServlet {
 		// recibir datos del form
 
 		String nombre = request.getParameter("nombre");
+		String foto = request.getParameter("foto");
 
 		// crear perro
 		indice = perros.size();
 		Perro p = new Perro();
 		p.setId(indice);
 		p.setNombre(nombre);
+	
 
 		// guardar en lista
 		perros.add(p);

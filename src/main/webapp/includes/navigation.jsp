@@ -1,3 +1,5 @@
+
+<%@page import="com.ipartek.formacion.model.pojo.Usuario"%>
 <header class="bg-info">
 
 	<nav class="container navbar navbar-expand-xl navbar-dark">
@@ -22,20 +24,19 @@
 
 				<li class="nav-item active dropdown">
 					<%
-						String usuario = (String) session.getAttribute("usuarioLogeado");
+						Usuario usuario = (Usuario)session.getAttribute("usuarioLogeado");
+						
 					%> 
 					<%
  						if (usuario == null) {%> 
- 						<a class="nav-link" href="registro.jsp"
-						id="dropdown06" data-toggle="dropdown" aria-haspopup="true"
-					 						aria-expanded="false">Registrarse</a>
+ 						<a class="nav-link" href="registro.jsp">Registrarse</a>
  						<%}
  						else{%>
  								<a
 					class="nav-link dropdown-toggle" href="http://example.com"
 					id="dropdown06" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> <span class="mr-2"><%=usuario%></span> <img
-						src="images/avatar.png" alt="avatar" id="avatar"
+					aria-expanded="false"> <span class="mr-2"><%=usuario.getNombre()%></span> <img
+						src="<%=usuario.getImagen()%>" alt="avatar" id="avatar"
 						class="rounded-circle" />
 				</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown06">

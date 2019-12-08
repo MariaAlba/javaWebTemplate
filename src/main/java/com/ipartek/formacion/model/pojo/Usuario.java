@@ -71,5 +71,7 @@ public class Usuario {
 		return "Usuario [id=" + id + ", nombre=" + nombre + ", password=" + password + ", github=" + github
 				+ ", imagen=" + imagen + "]";
 	}
+	
+
 
 }

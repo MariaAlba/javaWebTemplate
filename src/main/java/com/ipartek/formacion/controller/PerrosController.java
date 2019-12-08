@@ -53,8 +53,15 @@ public class PerrosController extends HttpServlet {
 		if (idToDelete != null) {
 			perros.removeIf(n -> (n.getId() == Integer.parseInt(idToDelete)));
 		}
+		
+		if(request.getSession().getAttribute("usuarioLogeado")!=null) { 
+				request.getRequestDispatcher("perros.jsp").forward(request, response);}
+		else {
+			response.sendRedirect("index.jsp");
+					
+				}
 
-		request.getRequestDispatcher("perros.jsp").forward(request, response);
+		
 	}
 
 	/**

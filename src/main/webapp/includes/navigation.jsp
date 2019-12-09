@@ -21,6 +21,7 @@
 				</li>
 
 				<li class="nav-item active"><a class="nav-link" href="perros">Perros</a></li>
+				<li class="nav-item active"><a class="nav-link" href="perros2">Perros con JSLT</a></li>
 
 				<li class="nav-item active dropdown">
 					<%

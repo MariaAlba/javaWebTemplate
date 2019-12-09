@@ -21,5 +21,18 @@
 	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 	crossorigin="anonymous"></script>
 
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.20/b-1.6.1/r-2.2.3/datatables.min.js"></script>
+
+
+<script>
+
+
+
+$(document).ready(function(){
+	
+	$('.table').DataTable();
+	
+});
+</script>
 </body>
 </html>

@@ -2,6 +2,8 @@ package com.ipartek.formacion.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,9 +21,9 @@ import com.ipartek.formacion.model.pojo.Usuario;
 public class LoginController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	
 
-	public static ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+	private static Set<Usuario> usuariosSet = new HashSet<Usuario>();
+	private static ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 	private int indice = usuarios.size();
 
 	/**
@@ -29,12 +31,12 @@ public class LoginController extends HttpServlet {
 	 */
 	public LoginController() {
 		super();
-		usuarios.add(new Usuario(usuarios.size(), "Admin", "admin", "https://github.com/mradmin",
+		usuariosSet.add(new Usuario(usuariosSet.size(), "Admin", "admin", "https://github.com/mradmin",
 				"https://randomuser.me/api/portraits/thumb/women/48.jpg"));
-		usuarios.add(new Usuario(usuarios.size(), "User", "12345", "https://github.com/mrbunny",
+		usuariosSet.add(new Usuario(usuariosSet.size(), "User", "12345", "https://github.com/mrbunny",
 				"https://randomuser.me/api/portraits/thumb/men/48.jpg"));
-		usuarios.add(
-				new Usuario(usuarios.size(), "Maria", "maria", "https://github.com/MariaAlba", "images/avatar.png"));
+		usuariosSet.add(
+				new Usuario(usuariosSet.size(), "Maria", "maria", "https://github.com/MariaAlba", "images/avatar.png"));
 	}
 
 	/**
@@ -62,19 +64,18 @@ public class LoginController extends HttpServlet {
 		HttpSession session = request.getSession();
 		session = request.getSession();
 		String vista = "";
+		String base = request.getContextPath();
 
-		
-
-		for (Usuario usuario : usuarios) {
+		for (Usuario usuario : usuariosSet) {
 
 			if (usuario.getNombre().equalsIgnoreCase(nombre) && usuario.getPassword().equalsIgnoreCase(contrasena)) {
 				session.setAttribute("usuarioLogeado", usuario);
 				session.setMaxInactiveInterval(-1); // nunca caduca
-				vista = "perros";
+				vista = base + "/private/home";
 				break;
-			
+
 			} else {
-				vista = "index.jsp";
+				vista = base + "/login.jsp";
 			}
 		}
 

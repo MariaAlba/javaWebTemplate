@@ -8,7 +8,7 @@
 <title>PerrosApp</title>
 
 <!-- la base para construir todas las rutas de esta pagina -->
-<base href="/template/">
+<base href="${pageContext.request.contextPath}/" />
 
 <!-- favicon -->
 <link rel="icon" href="images/favicon.png" sizes="16x16"

@@ -1,6 +1,7 @@
 package com.ipartek.formacion.listener;
 
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.servlet.ServletContext;
 import javax.servlet.annotation.WebListener;
@@ -20,7 +21,8 @@ public class ContadorSesionesListener implements HttpSessionAttributeListener {
 
 	private static final Logger LOG = Logger.getLogger(ContadorSesionesListener.class);
 
-	private static ArrayList<Usuario> todos = new ArrayList<Usuario>();
+	// private static ArrayList<Usuario> todos = new ArrayList<Usuario>();
+	private static Set<Usuario> todos = new HashSet<Usuario>();
 
 	/**
 	 * @see HttpSessionAttributeListener#attributeAdded(HttpSessionBindingEvent)

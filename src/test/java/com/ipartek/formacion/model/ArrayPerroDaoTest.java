@@ -26,6 +26,7 @@ public class ArrayPerroDaoTest {
 	public static void setUpBeforeClass() throws Exception {
 		dao = ArrayPerroDao.getInstance();
 		mock = new Perro(indice, MOCK_NOMBRE, "");
+		// uf
 	}
 
 	@AfterClass

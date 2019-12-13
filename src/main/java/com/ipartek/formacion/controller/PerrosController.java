@@ -1,7 +1,6 @@
 package com.ipartek.formacion.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -12,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
+import com.ipartek.formacion.model.ArrayPerroDao;
 import com.ipartek.formacion.model.pojo.Perro;
 
 /**
@@ -23,11 +23,7 @@ public class PerrosController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger LOG = Logger.getLogger(PerrosController.class);
 
-	// lista de perros que imita a una bbdd
-	private ArrayList<Perro> perros = new ArrayList<Perro>();
-
-	// para las ids
-	private int indice = 0;
+	private static ArrayPerroDao dao = ArrayPerroDao.getInstance();
 
 	String mensaje = "";
 
@@ -37,13 +33,17 @@ public class PerrosController extends HttpServlet {
 
 		super.init(config);
 
-		perros.add(new Perro(1, "bubba", "https://images.dog.ceo/breeds/chow/n02112137_9146.jpg"));
-		perros.add(new Perro(2, "rataplan", "https://images.dog.ceo/breeds/poodle-toy/n02113624_7996.jpg"));
-		perros.add(new Perro(3, "mosca", "https://images.dog.ceo/breeds/elkhound-norwegian/n02091467_3556.jpg"));
-		perros.add(new Perro(4, "txakur", "https://images.dog.ceo/breeds/keeshond/n02112350_7141.jpg"));
-		perros.add(new Perro(5, "lagun", "https://images.dog.ceo/breeds/retriever-chesapeake/n02099849_4767.jpg"));
-
-		indice = 6;
+		try {
+			dao.create(new Perro("Michi",
+					"https://images.squarespace-cdn.com/content/v1/5a8abbee6f4ca301c2d1b962/1527808340868-GRA08XX79G20DUND6H9I/ke17ZwdGBToddI8pDm48kGuaBMmARhKtUmXCE1pY_k1Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpzGBwVodEh3vUCb_FH6fADYhlZwvRiPtE8wFqmckfQo9hcWrJuBgPcO-nCQUzImAEM/Logo+Pipper+RECORTADA.jpg"));
+			dao.create(new Perro("Puchi",
+					"https://images.squarespace-cdn.com/content/v1/5a8abbee6f4ca301c2d1b962/1527808340868-GRA08XX79G20DUND6H9I/ke17ZwdGBToddI8pDm48kGuaBMmARhKtUmXCE1pY_k1Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpzGBwVodEh3vUCb_FH6fADYhlZwvRiPtE8wFqmckfQo9hcWrJuBgPcO-nCQUzImAEM/Logo+Pipper+RECORTADA.jpg"));
+			dao.create(new Perro("Ploffi",
+					"https://images.squarespace-cdn.com/content/v1/5a8abbee6f4ca301c2d1b962/1527808340868-GRA08XX79G20DUND6H9I/ke17ZwdGBToddI8pDm48kGuaBMmARhKtUmXCE1pY_k1Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpzGBwVodEh3vUCb_FH6fADYhlZwvRiPtE8wFqmckfQo9hcWrJuBgPcO-nCQUzImAEM/Logo+Pipper+RECORTADA.jpg"));
+		} catch (Exception e) {
+			LOG.trace("Excepcion al crear");
+			e.printStackTrace();
+		}
 
 	}
 
@@ -51,7 +51,7 @@ public class PerrosController extends HttpServlet {
 	public void destroy() {
 		LOG.trace("se ejecuta solo una vez cuando se para el servidor de aplicacionez");
 		super.destroy();
-		perros = null;
+
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class PerrosController extends HttpServlet {
 		LOG.trace("se ejecuta despues del doGet o doPost");
 
 		request.setAttribute("mensaje", mensaje);
-		request.setAttribute("perros", perros);
+		request.setAttribute("perros", dao.getAll());
 		request.getRequestDispatcher("perros.jsp").forward(request, response);
 
 	}
@@ -92,7 +92,7 @@ public class PerrosController extends HttpServlet {
 
 			// buscar perro en array
 			Perro perro = null;
-			for (Perro p : perros) {
+			for (Perro p : dao.getAll()) {
 				if (p.getId() == id) {
 					perro = p;
 					break;
@@ -100,7 +100,12 @@ public class PerrosController extends HttpServlet {
 			}
 
 			if (adoptar) {
-				perros.remove(perro);
+				try {
+					dao.delete(perro.getId());
+				} catch (Exception e) {
+					LOG.debug("Excepcion al eliminar");
+					e.printStackTrace();
+				}
 				mensaje = "Ya has adoptado a " + perro.getNombre() + ", gracias.";
 			}
 
@@ -133,7 +138,7 @@ public class PerrosController extends HttpServlet {
 
 			LOG.trace("Modificar el perro");
 			Perro perro = null;
-			for (Perro p : perros) {
+			for (Perro p : dao.getAll()) {
 				if (p.getId() == id) {
 					perro = p;
 					break;
@@ -152,13 +157,16 @@ public class PerrosController extends HttpServlet {
 			Perro p = new Perro();
 			p.setNombre(nombre);
 			p.setFoto(foto);
-			p.setId(indice);
-			indice++;
 
 			mensaje = "Gracias por dar de alta un nuevo perro";
 
 			// guardar en lista
-			perros.add(p);
+			try {
+				dao.create(p);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				LOG.debug("Excepcion al crear" + e);
+			}
 
 		}
 

@@ -12,11 +12,17 @@ public class Perro {
 		this.foto = "https://images.squarespace-cdn.com/content/v1/5a8abbee6f4ca301c2d1b962/1527808340868-GRA08XX79G20DUND6H9I/ke17ZwdGBToddI8pDm48kGuaBMmARhKtUmXCE1pY_k1Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpzGBwVodEh3vUCb_FH6fADYhlZwvRiPtE8wFqmckfQo9hcWrJuBgPcO-nCQUzImAEM/Logo+Pipper+RECORTADA.jpg";
 	}
 
-	public Perro(int id, String nombre,String foto) {
+	public Perro(int id, String nombre, String foto) {
 		this();
 		this.id = id;
 		this.nombre = nombre;
-		this.foto =foto;
+		this.foto = foto;
+	}
+
+	public Perro(String nombre, String foto) {
+		this();
+		this.nombre = nombre;
+		this.foto = foto;
 	}
 
 	public int getId() {
